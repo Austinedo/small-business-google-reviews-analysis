@@ -1,0 +1,22 @@
+# Core data and utilities
+psutil
+pandas
+numpy
+tqdm
+
+# Machine learning and NLP
+scikit-learn
+nltk
+torch
+sentence-transformers
+
+# Visualization
+plotly
+matplotlib
+yellowbrick
+kaleido
+
+# Topic modeling and LDA visualization
+gensim
+spacy
+pyLDAvis
