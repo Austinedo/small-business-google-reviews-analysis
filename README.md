@@ -154,15 +154,16 @@ The results suggest three practical improvement areas for a service business:
 The repository is intended to contain materials such as:
 
 ```text
-.
-├── notebooks/               # Data cleaning, EDA, clustering, and LDA analysis
+|
 ├── data/                    # Processed/anonymized review data (if distribution is permitted)
-├── outputs/                 # Figures, topic visualizations, and model artifacts
+├── figures/                 # Figures, topic visualizations, and model artifacts
+├── notebooks/               # Data cleaning, EDA, clustering, and LDA analysis
+├── reports/                 # Formal Document with further explanations + deep-dives
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project documentation
 ```
 
-> Raw review data and identifying information should not be published. Use anonymized or approved processed data only.
+> Raw review data and identifying information is not published to this repository
 
 ## Installation
 
@@ -190,7 +191,7 @@ python -m spacy download en_core_web_sm
 ## Technologies
 
 - Python
-- pandas and NumPy
+- Pandas and NumPy
 - scikit-learn
 - NLTK and spaCy
 - Sentence-Transformers / PyTorch
@@ -215,4 +216,4 @@ Potential extensions include:
 
 **Austine Do**
 
-Project report completed July 31, 2026.
+Completed July 31, 2026.
