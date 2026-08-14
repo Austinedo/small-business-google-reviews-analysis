@@ -1,6 +1,3 @@
-# small-business-google-reviews-analysis
-Business Operations Analysis of a small business using google reviews
-
 # Topic Modeling and Analysis for Small Business Reviews
 
 ![Python](https://img.shields.io/badge/Python-3.10.19-blue)
