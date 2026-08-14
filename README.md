@@ -79,9 +79,9 @@ This baseline was useful for testing whether prominent word patterns could revea
 
 Sentence-BERT (SBERT) creates dense sentence embeddings that capture contextual and semantic similarity beyond exact word overlap. Embeddings were L2-normalized before K-Means clustering, making squared Euclidean distance monotonic with cosine similarity:
 
-\[
+$$
 \|x-y\|_2^2 = 2 - 2\cos(\theta)
-\]
+$$
 
 for unit-normalized vectors \(x\) and \(y\). This makes K-Means suitable for grouping reviews by cosine-based semantic similarity.
 
