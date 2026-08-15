@@ -21,7 +21,7 @@ The analysis evaluates three approaches:
 
 ## Data
 
-- **Source:** Google Reviews collected with a Google Reviews scraping tool developed by George Khanaev.
+- **Source:** Google Reviews collected with a [Google Reviews scraping tool](https://github.com/georgekhananaev/google-reviews-scraper-pro) developed by George Khanaev.
 - **Domain:** An anonymized local business in the beauty and hair-care service industry.
 - **Unit of analysis:** Written customer reviews.
 - **Target subset:** Negative reviews, defined as ratings less than or equal to 3 out of 5.
