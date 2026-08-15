@@ -7,13 +7,13 @@ An end-to-end natural language processing (NLP) project that analyzes negative G
 
 ## Project Overview
 
-Online reviews contain detailed feedback about service quality, staff interactions, appointment experiences, wait times, and product outcomes. Star ratings alone summarize sentiment, but they do not identify the operational issues responsible for a customer's experience.
+Online reviews contain detailed feedback about service quality, staff interactions, appointment experiences, wait times, product outcomes and more. Star ratings alone summarize sentiment, but they do not identify the operational issues responsible for driving customer's experience.
 
 This project focuses on reviews with ratings of **3 stars or lower** and applies unsupervised learning to answer the following question:
 
 > What recurring themes drive negative customer experiences, and which modeling approach provides the most useful and interpretable summary of those themes?
 
-The analysis evaluates three approaches:
+The analysis implements and evaluates three approaches:
 
 1. **K-Means clustering with TF-IDF features** — groups reviews using lexical similarity and word-frequency patterns.
 2. **K-Means clustering with SBERT embeddings** — groups reviews according to semantic similarity, including conceptually similar language with different word choices.
@@ -24,22 +24,22 @@ The analysis evaluates three approaches:
 - **Source:** Google Reviews collected with a [Google Reviews scraping tool](https://github.com/georgekhananaev/google-reviews-scraper-pro) developed by George Khanaev.
 - **Domain:** An anonymized local business in the beauty and hair-care service industry.
 - **Unit of analysis:** Written customer reviews.
-- **Target subset:** Negative reviews, defined as ratings less than or equal to 3 out of 5.
+- **Target subset:** Negative reviews, defined as ratings less than or equal to 3 out of 5. (Subset size was 462 reviews)
 
 To protect privacy, business identifiers and personally identifiable reviewer information were removed before analysis. Retained fields were limited to information relevant to the text and rating analysis.
 
 ## Workflow
 
 ```text
-Google Reviews
-     |
-     v
-General text cleaning
-(HTML/web artifacts, URLs, email addresses)
-     |
-     v
-Filter reviews with ratings <= 3
-     |
+                   Google Reviews
+                         |
+                         v
+               General text cleaning
+    (HTML/web artifacts, URLs, email addresses)
+                         |
+                         v
+         Filter reviews with ratings <= 3     
+                         |
      +-------------------+-------------------+
      |                   |                   |
      v                   v                   v
@@ -52,7 +52,7 @@ Lexical clusters    Semantic clusters      Mixed-membership topics
 A common initial cleaning stage removed HTML/web artifacts, URLs, and email addresses. The resulting negative-review corpus was then prepared differently for each modeling approach:
 
 | Modeling branch | Representation and preprocessing |
-|---|---|
+|-----|---|
 | TF-IDF + K-Means | Lowercasing, removal of punctuation, digits, artifacts, and stopwords; transformed into a sparse TF-IDF document-term matrix |
 | SBERT + K-Means | General-cleaned review text was encoded directly with a pretrained Sentence-BERT model to preserve wording and contextual meaning |
 | LDA | Tokenization, lemmatization, standard and custom stopword filtering, n-gram extraction, and construction/tuning of a bag-of-words dictionary |
@@ -80,7 +80,7 @@ This baseline was useful for testing whether prominent word patterns could revea
 Sentence-BERT (SBERT) creates dense sentence embeddings that capture contextual and semantic similarity beyond exact word overlap. Embeddings were L2-normalized before K-Means clustering, making squared Euclidean distance monotonic with cosine similarity:
 
 $$
-\|x-y\|_2^2 = 2 - 2\cos(\theta)
+\|\|x-y\|\|_2^2 = 2 - 2\cos(\theta)
 $$
 
 for unit-normalized vectors \(x\) and \(y\). This makes K-Means suitable for grouping reviews by cosine-based semantic similarity.
@@ -116,7 +116,7 @@ SBERT embeddings improved interpretability relative to TF-IDF by grouping concep
 The selected \(k=2\) solution identified two broad, actionable groupings:
 
 | Cluster | Interpretation |
-|---|---|
+|----|---|
 | Cluster 0 | Unprofessional, rude, or inappropriate staff behavior and communication |
 | Cluster 1 | Service-quality concerns, including disappointing haircut outcomes, rushed appointments, and dissatisfaction with the overall service experience |
 
@@ -127,7 +127,7 @@ Although silhouette diagnostics still indicated weak global cluster separation�
 The three-topic LDA model produced the most interpretable thematic summary of negative reviews. The final topics were:
 
 | Topic | Main theme | Operational interpretation |
-|---|---|---|
+|----|---|---|
 | Topic 1 | Service mistakes and unsatisfactory haircut outcomes | Uneven or poor-quality haircuts, frustration, and customers deciding not to return or recommend the business |
 | Topic 2 | Wait times and the in-salon experience | Delays, being unattended to, poor customer service, and feeling uncared for during the visit |
 | Topic 3 | Unprofessional behavior and communication | Rude, disrespectful, uncomfortable, or inappropriate interactions with barbers or staff |
