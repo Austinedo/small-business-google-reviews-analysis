@@ -67,9 +67,9 @@ The selected TF-IDF configuration used:
 
 ```python
 max_features = 100
-min_df = 11
-max_df = 0.6
-n_clusters = 3
+min_df = 14
+max_df = 0.45
+n_clusters = 6
 random_state = 6740
 ```
 
@@ -80,7 +80,7 @@ This baseline was useful for testing whether prominent word patterns could revea
 Sentence-BERT (SBERT) creates dense sentence embeddings that capture contextual and semantic similarity beyond exact word overlap. Embeddings were L2-normalized before K-Means clustering, making squared Euclidean distance monotonic with cosine similarity:
 
 $$
-\|\|x-y\|\|_2^2 = 2 - 2\cos(\theta)
+\|x-y\|_2^2 = 2 - 2\cos(\theta)
 $$
 
 for unit-normalized vectors \(x\) and \(y\). This makes K-Means suitable for grouping reviews by cosine-based semantic similarity.
@@ -107,7 +107,7 @@ The TF-IDF K-Means analysis did not produce clear, interpretable topical cluster
 - The WCSS curve did not show a distinct elbow.
 - Silhouette scores were consistently low across tested values of \(k\) from 2 to 9.
 - Cluster keyword lists overlapped substantially and contained repeated high-frequency terms such as *hair*, *haircut*, *service*, *place*, and *staff*.
-- The result suggested that sparse lexical features and single-cluster assignments did not adequately capture the overlapping structure of customer complaints.
+- The result suggested that sparse lexical features and single-cluster assignments did not adequately capture the hidden multi-topic structure of customer complaints.
 
 ### SBERT + K-Means: more meaningful semantic groupings
 
@@ -157,7 +157,7 @@ The repository is intended to contain materials such as:
 |
 ├── data/                    # Processed/anonymized review data (if distribution is permitted)
 ├── figures/                 # Figures, topic visualizations, and model artifacts
-├── notebooks/               # Data cleaning, EDA, clustering, and LDA analysis
+├── notebooks/               # Data cleaning, topic modeling implementation, etc.
 ├── reports/                 # Formal Document with further explanations + deep-dives
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project documentation
@@ -185,7 +185,8 @@ nltk.download("stopwords")
 If the notebook uses a spaCy English pipeline, install it separately:
 
 ```bash
-python -m spacy download en_core_web_sm
+python -m spacy download en_core_web_sm # small, fast, lightweight traditional neural network (tok2vec)
+python -m spacy download en_core_web_trf # larger, more accurate transformer-based model (roberta-based)
 ```
 
 ## Technologies
@@ -208,7 +209,7 @@ Potential extensions include:
 
 - Compare positive and negative reviews to identify drivers of satisfaction and dissatisfaction.
 - Add domain-specific vocabulary and preprocessing rules for the beauty and hair-care industry.
-- Evaluate alternative topic-modeling methods, such as BERTopic or neural topic models.
+- Evaluate alternative topic-modeling methods, such as BERTopic, Top2Vec, or neural topic models.
 - Track topic prevalence over time to identify emerging operational issues.
 - Combine review topics with ratings, responses, and engagement information to prioritize improvements.
 
