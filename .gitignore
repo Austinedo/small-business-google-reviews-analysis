@@ -1,3 +1,5 @@
 # ignore raw data file (DO NOT PUBLISH)
 data/raw/
 data/data_checkpoints/
+
+.DS_Store
