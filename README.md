@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10.19-blue)
 ![Tags](https://img.shields.io/badge/Tags-NLP%20%7C%20Transformers%20%7C%20Topic%20Modeling%20%7C%20Visualization%20%7C%20Machine%20Learning-red)
 
-An end-to-end natural language processing (NLP) project that analyzes negative Google Reviews for an anonymized business in the beauty and hair-care service industry. The project compares lexical clustering, semantic clustering, and probabilistic topic modeling to uncover recurring operational issues hidden in customer feedback.
+An end-to-end natural language processing (NLP) anaylsis that analyzes negative Google Reviews for an anonymized business in the beauty and hair-care service industry. The project compares lexical clustering, semantic clustering, and probabilistic topic modeling to uncover recurring operational issues hidden in customer feedback.
 
 ## Project Overview
 
