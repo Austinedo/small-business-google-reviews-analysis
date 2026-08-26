@@ -3,3 +3,4 @@ data/raw/
 data/data_checkpoints/
 
 .DS_Store
+streamlit-dashboard/
